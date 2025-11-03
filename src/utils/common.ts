@@ -1,5 +1,7 @@
 import { RepeatType } from '../types';
 
+export const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
+
 export const getRepeatTypeLabel = (type: RepeatType): string => {
   switch (type) {
     case 'daily':
