@@ -6,8 +6,10 @@
   "scripts": {
     "server": "node server.js",
     "server:watch": "node --watch server.js",
+    "server:e2e": "cross-env TEST_ENV=e2e node --watch server.js",
     "start": "vite",
     "dev": "concurrently \"pnpm run server:watch\" \"pnpm run start\"",
+    "dev:e2e": "cross-env TEST_ENV=e2e concurrently \"cross-env TEST_ENV=e2e node --watch server.js\" \"pnpm run start\"",
     "test": "vitest",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
@@ -17,7 +19,8 @@
     "lint": "pnpm lint:eslint && pnpm lint:tsc",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_f831a349aacfd33"
+    "chromatic": "npx chromatic --project-token=chpt_f831a349aacfd33",
+    "test:e2e": "cross-env TEST_ENV=e2e playwright test --ui"
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -34,6 +37,7 @@
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.2",
     "@eslint/js": "9.34.0",
+    "@playwright/test": "^1.56.1",
     "@storybook/addon-docs": "^10.0.2",
     "@storybook/addon-onboarding": "^10.0.2",
     "@storybook/react-vite": "^10.0.2",
@@ -50,6 +54,7 @@
     "@vitest/ui": "^3.2.4",
     "chromatic": "^13.3.3",
     "concurrently": "^8.2.2",
+    "cross-env": "^10.1.0",
     "eslint": "^9.30.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-import": "^2.32.0",
